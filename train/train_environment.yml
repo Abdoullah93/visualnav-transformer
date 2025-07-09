@@ -27,6 +27,7 @@ dependencies:
   - lmdb 
   - vit-pytorch
   - positional-encodings
+  - huggingface-hub==0.25.2
 
 
 
