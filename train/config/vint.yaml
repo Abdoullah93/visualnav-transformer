@@ -5,9 +5,9 @@ run_name: vint-5c
 use_wandb: True # set to false if you don't want to log to wandb
 train: True
 batch_size: 256
-epochs: 100
+epochs: 50
 gpu_ids: [0]
-num_workers: 12
+num_workers: 6 # number of workers for the dataloader
 lr: 5e-4
 optimizer: adamw
 clipping: False
@@ -56,20 +56,20 @@ image_size: [85, 64] # width, height
 goal_type: "image"
 
 datasets:
-  # recon:
-  #   data_folder: /home/<username>/vint_dataset/recon
-  #   train: /home/<username>/data_splits/recon/train/ # path to train folder with traj_names.txt
-  #   test: /home/<username>/data_splits/recon/test/ # path to test folder with traj_names.txt
-  #   end_slack: 3 # because many trajectories end in collisions
-  #   goals_per_obs: 1 # how many goals are sampled per observation
-  #   negative_mining: True # negative mining from the ViNG paper (Shah et al.)
-  go_stanford:
-    data_folder: /root/AI-NAVIGATION/visualnav-transformer/datasets/go_stanford # datasets/stanford_go_new
-    train: /root/AI-NAVIGATION/visualnav-transformer/train/vint_train/data/data_splits/go_stanford/train/
-    test: /root/AI-NAVIGATION/visualnav-transformer/train/vint_train/data/data_splits/go_stanford/test/
-    end_slack: 0
-    goals_per_obs: 2 # increase dataset size
-    negative_mining: True
+  recon:
+    data_folder: /AI-NAVIGATION/visualnav-transformer/train/datasets/recon
+    train: /AI-NAVIGATION/visualnav-transformer/train/vint_train/data/data_splits/recon/train/ # path to train folder with traj_names.txt
+    test: /AI-NAVIGATION/visualnav-transformer/train/vint_train/data/data_splits/recon/test/ # path to test folder with traj_names.txt
+    end_slack: 3 # because many trajectories end in collisions
+    goals_per_obs: 1 # how many goals are sampled per observation
+    negative_mining: True # negative mining from the ViNG paper (Shah et al.)
+  # go_stanford:
+  #   data_folder: /AI-NAVIGATION/datasets/go_stanford # datasets/stanford_go_new
+  #   train: /AI-NAVIGATION/visualnav-transformer/train/vint_train/data/data_splits/go_stanford/train/
+  #   test: /AI-NAVIGATION/visualnav-transformer/train/vint_train/data/data_splits/go_stanford/test/
+  #   end_slack: 0
+  #   goals_per_obs: 2 # increase dataset size
+  #   negative_mining: True
   # cory_hall:
   #   data_folder: /home/<username>/vint_dataset/cory_hall/
   #   train: /home/<username>/data_splits/cory_hall/train/
@@ -117,3 +117,6 @@ pairwise_test_freq: 0 # in epochs
 eval_fraction: 0.25
 wandb_log_freq: 10 # in iterations
 eval_freq: 1 # in epochs
+
+# load_run: /AI-NAVIGATION/visualnav-transformer/train/logs/vint-release/vint-5c_2025_07_29_07_59_56
+load_run: /AI-NAVIGATION/visualnav-transformer/train/logs/vint-release/vint-5c_2025_07_29_15_37_26
